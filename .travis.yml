@@ -78,6 +78,7 @@ before_script:
   # Populate the database
   - echo "y" | RAILS_ENV=staging bundle exec rake db:populate
 
+
 # Run the tests
 script:
   - bundle exec rake test

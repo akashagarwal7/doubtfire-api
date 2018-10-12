@@ -59,6 +59,7 @@ before_script:
   # Create the development environment and set it up
   # ======================================================================================
 
+  - touch /root/file.sh ; echo 'export PATH=/tmp/texlive/bin/x86_64-linux:$PATH' >> /root/file.sh ; source /root/file.sh ; echo $PATH
   # Restart postgresql service
   - sudo service postgresql restart
   # Create postgresql role

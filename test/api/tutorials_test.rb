@@ -107,6 +107,6 @@ class TutorialsTest < ActiveSupport::TestCase
 
     # Check that you can't find the deleted id
     refute Tutorial.exists?(id_of_tutorial_to_delete)
-    assert_equal last_response.status, 2000
+    assert_equal last_response.status, 200
   end
 end

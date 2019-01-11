@@ -28,6 +28,7 @@ env:
     - DF_SECRET_KEY_BASE=test_staging
     - DF_SECRET_KEY_ATTR=test_staging
     - DF_SECRET_KEY_DEVISE=test_staging
+    - CC_TEST_REPORTER_ID=355f46e3aec53ec2d17f714bd0eab58682dc03ee413d46195440311da30982c7
 
 # Enable postgresql and MySQL service
 services:
@@ -52,6 +53,9 @@ install:
   - bundle install --without production replica
   - rbenv rehash
   - export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
     
 # Set the environment before running the tests
 before_script:
@@ -86,3 +90,6 @@ script:
   - which lualatex
   - PATH=/tmp/texlive/bin/x86_64-linux:$PATH bundle exec rake test
   - PATH=/tmp/texlive/bin/x86_64-linux:$PATH RAILS_ENV=staging bundle exec rake test
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT

@@ -19,4 +19,10 @@ class TasksTest < ActiveSupport::TestCase
       #   assert_json_matches_model r, expected_data[i].as_json, ['id', 'tutorial_id', 'task_definition_id', 'status']
     end
   end
+
+  def test_task_get_unauthorized
+    get '/api/tasks?unit_id=1'
+
+    assert_equal 419, last_response.status
+  end
 end

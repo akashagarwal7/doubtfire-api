@@ -25,4 +25,10 @@ class TasksTest < ActiveSupport::TestCase
 
     assert_equal 419, last_response.status
   end
+
+  def test_get_submission_details_unauthorized
+    get '/api/projects/1/task_def_id/1/submission_details'
+
+    assert_equal 419, last_response.status
+  end
 end
